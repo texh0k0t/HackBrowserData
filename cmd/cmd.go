@@ -14,6 +14,7 @@ var (
 	browser      string
 	exportDir    string
 	outputFormat string
+	userProfile  string
 	verbose      bool
 	compress     bool
 )
@@ -30,6 +31,7 @@ func Execute() {
 			&cli.StringFlag{Name: "browser", Aliases: []string{"b"}, Destination: &browser, Value: "all", Usage: "Available browsers: all|" + strings.Join(core.ListBrowser(), "|")},
 			&cli.StringFlag{Name: "results-dir", Aliases: []string{"dir"}, Destination: &exportDir, Value: "results", Usage: "Export dir"},
 			&cli.StringFlag{Name: "format", Aliases: []string{"f"}, Destination: &outputFormat, Value: "csv", Usage: "Format, csv|json|console"},
+			&cli.StringFlag{Name: "userprofile", Aliases: []string{"up"}, Destination: &userProfile, Value: os.Getenv("USERPROFILE"), Usage: "Setup user dir"},
 		},
 		HideHelpCommand: true,
 		Action: func(c *cli.Context) error {
@@ -39,7 +41,7 @@ func Execute() {
 				log.InitLog("error")
 			}
 			// default select all browsers
-			browsers, err := core.PickBrowser(browser)
+			browsers, err := core.PickBrowser(browser, userProfile)
 			if err != nil {
 				log.Error(err)
 			}

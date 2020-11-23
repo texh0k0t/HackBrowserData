@@ -3,7 +3,6 @@ package core
 import (
 	"encoding/base64"
 	"errors"
-	"os"
 
 	"hack-browser-data/core/decrypt"
 	"hack-browser-data/utils"
@@ -34,41 +33,41 @@ var (
 		New         func(profile, key, name, storage string) (Browser, error)
 	}{
 		"chrome": {
-			ProfilePath: os.Getenv("USERPROFILE") + chromeProfilePath,
-			KeyPath:     os.Getenv("USERPROFILE") + chromeKeyPath,
+			ProfilePath: userProfile + chromeProfilePath,
+			KeyPath:     userProfile + chromeKeyPath,
 			Name:        chromeName,
 			New:         NewChromium,
 		},
 		"chrome-beta": {
-			ProfilePath: os.Getenv("USERPROFILE") + chromeBetaProfilePath,
-			KeyPath:     os.Getenv("USERPROFILE") + chromeBetaKeyPath,
+			ProfilePath: userProfile + chromeBetaProfilePath,
+			KeyPath:     userProfile + chromeBetaKeyPath,
 			Name:        chromeBetaName,
 			New:         NewChromium,
 		},
 		"edge": {
-			ProfilePath: os.Getenv("USERPROFILE") + edgeProfilePath,
-			KeyPath:     os.Getenv("USERPROFILE") + edgeKeyPath,
+			ProfilePath: userProfile + edgeProfilePath,
+			KeyPath:     userProfile + edgeKeyPath,
 			Name:        edgeName,
 			New:         NewChromium,
 		},
 		"360": {
-			ProfilePath: os.Getenv("USERPROFILE") + speed360ProfilePath,
+			ProfilePath: userProfile + speed360ProfilePath,
 			Name:        speed360Name,
 			New:         NewChromium,
 		},
 		"qq": {
-			ProfilePath: os.Getenv("USERPROFILE") + qqBrowserProfilePath,
+			ProfilePath: userProfile + qqBrowserProfilePath,
 			Name:        qqBrowserName,
 			New:         NewChromium,
 		},
 		"firefox": {
-			ProfilePath: os.Getenv("USERPROFILE") + firefoxProfilePath,
+			ProfilePath: userProfile + firefoxProfilePath,
 			Name:        firefoxName,
 			New:         NewFirefox,
 		},
 		"brave": {
-			ProfilePath: os.Getenv("USERPROFILE") + braveProfilePath,
-			KeyPath:     os.Getenv("USERPROFILE") + braveKeyPath,
+			ProfilePath: userProfile + braveProfilePath,
+			KeyPath:     userProfile + braveKeyPath,
 			Name:        braveName,
 			New:         NewChromium,
 		},

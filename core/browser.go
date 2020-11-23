@@ -37,6 +37,10 @@ type Browser interface {
 	GetItem(itemName string) (data.Item, error)
 }
 
+var (
+	userProfile string
+)
+
 const (
 	cookie   = "cookie"
 	history  = "history"
@@ -231,7 +235,8 @@ func (f *Firefox) InitSecretKey() error {
 }
 
 // PickBrowser return a list of browser interface
-func PickBrowser(name string) ([]Browser, error) {
+func PickBrowser(name string, userProfile string) ([]Browser, error) {
+	userProfile = userProfile
 	var browsers []Browser
 	name = strings.ToLower(name)
 	if name == "all" {
